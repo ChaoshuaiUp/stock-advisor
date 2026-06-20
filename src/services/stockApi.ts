@@ -61,8 +61,9 @@ export interface MarketData {
 }
 
 // ── 配置 ────────────────────────────────────────────────────────────────────
-
-const BASE_URL = '/api';  // Vite proxy 转发到 localhost:3001
+// 开发环境：Vite 代理 /api → localhost:3001
+// 生产环境：通过 VITE_API_BASE_URL 环境变量指定代理服务地址
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api';
 const TIMEOUT_MS = 8000;
 
 // ── 请求工具 ─────────────────────────────────────────────────────────────────

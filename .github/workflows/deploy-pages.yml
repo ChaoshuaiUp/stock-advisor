@@ -35,6 +35,9 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          # 代理服务地址（需在 GitHub 仓库 Settings → Secrets 中配置 API_BASE_URL）
+          VITE_API_BASE_URL: ${{ secrets.API_BASE_URL }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
