@@ -17,7 +17,7 @@ const http = require('http');
 const https = require('https');
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 // ── 绕过系统代理（直连腾讯/东财）──────────────────────────────────────────
 // 防止 IDE 或系统代理拦截对外的 HTTP 请求
@@ -26,7 +26,7 @@ process.env.no_proxy = process.env.NO_PROXY;
 
 // ── CORS 配置 ──────────────────────────────────────────────────────────────
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:5173', 'http://localhost:4173'],
+  origin: process.env.ALLOWED_ORIGIN || '*',
   methods: ['GET'],
 }));
 
