@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== 全局基础样式 ===== */
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100;
+    font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
+    transition: background-color 250ms ease, color 250ms ease;
+  }
+
+  /* 涨跌色（中国市场习惯：红涨绿跌）*/
+  .text-up { color: #dc2626; }
+  .text-down { color: #16a34a; }
+
+  /* 信号灯色 */
+  .text-signal-buy { color: #16a34a; }
+  .text-signal-hold { color: #ca8a04; }
+  .text-signal-sell { color: #dc2626; }
+  .text-signal-buy-dark { color: #15803d; }
+  .text-signal-hold-dark { color: #a16207; }
+  .text-signal-sell-dark { color: #b91c1c; }
+
+  .bg-signal-buy-light { background-color: #dcfce7; }
+  .bg-signal-hold-light { background-color: #fef9c3; }
+  .bg-signal-sell-light { background-color: #fee2e2; }
+
+  /* 暗色模式下信号灯背景色调整 */
+  .dark .bg-signal-buy-light { background-color: rgba(22, 163, 74, 0.15); }
+  .dark .bg-signal-hold-light { background-color: rgba(202, 138, 4, 0.15); }
+  .dark .bg-signal-sell-light { background-color: rgba(220, 38, 38, 0.15); }
+}
+
+/* ===== 脉冲动画 ===== */
+@layer utilities {
+  .animate-pulse-buy {
+    animation: pulseBuy 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  .animate-pulse-sell {
+    animation: pulseSell 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+@keyframes pulseBuy {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.4); }
+  50% { box-shadow: 0 0 0 12px rgba(22, 163, 74, 0); }
+}
+
+@keyframes pulseSell {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4); }
+  50% { box-shadow: 0 0 0 12px rgba(220, 38, 38, 0); }
+}
+
+/* ===== 减少动画偏好 ===== */
+@media (prefers-reduced-motion: reduce) {
+  .animate-pulse-buy,
+  .animate-pulse-sell,
+  .animate-fade-in,
+  .animate-slide-up {
+    animation: none !important;
+  }
+}
+
+/* ===== 焦点可见 ===== */
+*:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ===== 卡片阴影 ===== */
+.shadow-card {
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.03), 0 2px 4px rgba(0,0,0,0.04), 0 12px 24px rgba(0,0,0,0.04);
+}
+
+.dark .shadow-card {
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.05), 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* ===== 滚动条美化 ===== */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
